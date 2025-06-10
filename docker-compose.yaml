@@ -1,0 +1,14 @@
+services:
+  wordpress:
+    image: wordpress:latest
+    container_name: buvarqwp
+    restart: always
+    ports:
+      - "8081:80"
+    environment:
+      WORDPRESS_DB_HOST: server.sinergya.co:3306
+      WORDPRESS_DB_USER: buvarq
+      WORDPRESS_DB_PASSWORD: Password2025*_
+      WORDPRESS_DB_NAME: buvarq
+    volumes:
+      - /www/html/projects/
