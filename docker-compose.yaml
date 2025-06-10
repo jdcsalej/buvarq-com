@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   wordpress:
     image: wordpress:latest
@@ -6,9 +8,26 @@ services:
     ports:
       - "8081:80"
     environment:
-      WORDPRESS_DB_HOST: server.sinergya.co:3306
+      WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_USER: buvarq
       WORDPRESS_DB_PASSWORD: Password2025*_
       WORDPRESS_DB_NAME: buvarq
     volumes:
-      - /www/html/projects/
+      - /www/html/projects/:/var/www/html
+    depends_on:
+      - db
+
+  db:
+    image: mysql:5.7
+    container_name: buvarqdb
+    restart: always
+    environment:
+      MYSQL_DATABASE: buvarq
+      MYSQL_USER: buvarq
+      MYSQL_PASSWORD: Password2025*_
+      MYSQL_ROOT_PASSWORD: RootPassword2025*_
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
